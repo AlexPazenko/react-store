@@ -1,18 +1,31 @@
 import {ReactElement} from "react";
 
-export interface IProductRating {
-  rate: number;
-  count: number;
-}
-
 export interface IProduct {
   id: number;
   title: string;
+  description: string;
   price: number;
-  description?: string;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
   category: string;
-  image: string;
-  rating: IProductRating;
+  thumbnail: string;
+  images: string[];
+}
+
+export interface APIResponseProducts {
+  products: IProduct[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+
+export interface ReceivedProducts {
+  limit: number;
+  skip: number;
+  categoryName: string;
+  searchQuery: string;
 }
 
 export interface IFlex {
@@ -27,7 +40,7 @@ export interface IFlex {
   width?: string | undefined;
 }
 
-export interface IMyBtn {
+export interface IButton {
   children?: string;
   align?: string;
   primary?: boolean;
@@ -37,3 +50,28 @@ export interface IMyBtn {
   margin?: string | undefined;
 }
 
+export interface IAuthRegister {
+  firstName: string;
+  lastName: string;
+  age: number;
+  username: string;
+  password: string;
+}
+
+export interface IAuthLogin {
+  username: string
+  password: string
+}
+
+export interface IAuthResponse {
+  access: string
+  refresh: string
+  id: string;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  image: string;
+  token: string;
+}

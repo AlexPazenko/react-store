@@ -24,6 +24,8 @@
         "@typescript-eslint/restrict-plus-operands": 0, // Allows to use concatenation like "url += number"
         "@typescript-eslint/space-before-function-paren": ["error", "never"], // Delete space between function and ()
         "@typescript-eslint/semi": [2, "always"], // Always requires semicolons at the end of statements
-        "@typescript-eslint/no-floating-promises": 0
+        "@typescript-eslint/no-floating-promises": 0,
+       // "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": ["error"] // Blocks explicit type any
     }
 }

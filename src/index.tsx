@@ -6,10 +6,9 @@ import {ThemeProvider} from "styled-components";
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
-import {store} from "./store";
 import {GlobalStyled} from "./styles/Global.styled";
 import {LightTheme} from "./styles/themes/LightTheme.styled";
-
+import {store} from "./api";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,10 +18,10 @@ root.render(
 
     <ThemeProvider theme={LightTheme}>
       <Provider store={store}>
-      <GlobalStyled/>
-      <BrowserRouter>
-      <App />
-      </BrowserRouter>
+        <GlobalStyled/>
+        <BrowserRouter>
+          <App/>
+        </BrowserRouter>
       </Provider>
     </ThemeProvider>
 
