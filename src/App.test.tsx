@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 import {ThemeProvider} from "styled-components";
 import {Provider} from "react-redux";
-import {store} from "./store";
+import {store} from "./api";
 import {BrowserRouter} from "react-router-dom";
 import {GlobalStyled} from "./styles/Global.styled";
 import {LightTheme} from "./styles/themes/LightTheme.styled";

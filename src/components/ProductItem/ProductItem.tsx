@@ -1,19 +1,25 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {IProduct} from "../../models/models";
-import Flex from "../Flex/Flex";
-import MyBtn from "../UI/button/MyBtn";
-import {StyledProductItem} from "./StyledProductItem.syled";
-import {LinkMyBtn} from "../../styles/LinkMyBtn.styled";
+import Flex from "../Flex";
+import {Button} from "@mui/material";
+import {StyledProductItem} from "./StyledProductItem.styled";
+import {LinkButton} from "../../styles/LinkButton.styled";
 import {Link} from "react-router-dom";
 import Rating from '@mui/material/Rating';
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-const ProductItem = ({product}: { product: IProduct }) => {
+interface Product {
+  product: IProduct
+  authenticated: boolean
+}
+const ProductItem = ( props: Product ) => {
+  const product = props.product;
 
   if(product.description != undefined) {
     (product.description.length > 20) ? product.description.slice(0, 20) + '...' : product.description;
   }
 
-  const [value, setValue] = React.useState<number | null>(product.rating.rate);
+  const [value, setValue] = React.useState<number | null>(product.rating);
 
 
   return (
@@ -21,10 +27,9 @@ const ProductItem = ({product}: { product: IProduct }) => {
       <StyledProductItem>
         <Flex justify="center" align="center" wrap="wrap" className="product-image-wrapper">
           <Link to={`${product.id}`}>
-            <img className="product__image" src={product.image} alt={product.title}/>
+            <img className="product__image" src={product.thumbnail} alt={product.title}/>
           </Link>
         </Flex>
-
         <Rating
           name="simple-controlled"
           value={value}
@@ -37,8 +42,15 @@ const ProductItem = ({product}: { product: IProduct }) => {
         <Flex justify="space-between" wrap="wrap" margin="10px 0">
           <div className="product__price">${product.price}</div>
           <Flex justify="space-between" wrap="wrap">
-            <LinkMyBtn to={`${product.id}`} margin="0 15px 0 0">Open</LinkMyBtn>
-            <MyBtn outlined >Add</MyBtn>
+            <>
+            <LinkButton to={`${product.id}`} margin="0 15px 0 0">Open</LinkButton>
+            {props.authenticated &&
+            <Button variant="outlined"
+                    startIcon={<AddShoppingCartIcon />}
+                    sx={{ml: '10px'}}
+                    style={{maxHeight: "33px"}} >Add</Button>
+            }
+            </>
           </Flex>
         </Flex>
         {product.description &&
